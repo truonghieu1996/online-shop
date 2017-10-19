@@ -12,20 +12,22 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<p>${ noti }</p>
 	<div id="wrapper">
 		<jsp:include page="menu.jsp"></jsp:include>
 		<div id="rightContent">
-			<h3>Thêm danh mục</h3>
-			<form action="add_category" method="post">
+			<h3>Cập nhật danh mục</h3>
+			<form action="update_category" method="post" onsubmit="return validate()">
 				<table width="95%">
 					<tr>
 						<td width="125px"><b>Tên danh mục</b></td>
-						<td><input type="text" class="pendek" id="Category_name" name="Category_name"></td>
+						<td><input type="text" class="pendek" id="Category_name"
+							name="Category_name" value="${category.name}">${noti}</td>
+						<td><input type="hidden" class="pendek" id="Category_id"
+							name="Category_id" value="${category.id}"></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" class="button" value="Thêm">
+						<td><input type="submit" class="button" value="Cập nhật">
 						</td>
 					</tr>
 				</table>
@@ -33,6 +35,15 @@
 		</div>
 		<div class="clear"></div>
 		<jsp:include page="footer.jsp"></jsp:include>
+		<script type="text/javascript">
+			function validate() {
+				if (document.getElementById('Category_name').value == "") {
+					alert("Tên danh mục không được bỏ trống!");
+					return false;
+				}
+				return true;
+			}
+		</script>
 	</div>
 </body>
 </html>

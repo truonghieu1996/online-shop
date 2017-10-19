@@ -6,8 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Manage Category</title>
-<c:set var="root" value="${pageContext.request.contextPath}"/>
-<link rel="stylesheet" type="text/css" href="${root}/resource/css/mos-style.css">
+<c:set var="root" value="${pageContext.request.contextPath}" />
+<link rel="stylesheet" type="text/css"
+	href="${root}/resource/css/mos-style.css">
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -22,19 +23,24 @@
 			<table class="data">
 
 				<tr class="data">
-					<th align="center" class="data" width="30px">STT</th>
+					<th align="center" class="data" width="30px">ID</th>
 					<th align="center" class="data">Tên danh mục</th>
 					<th align="center" class="data" width="75px">#</th>
 				</tr>
-				<tr class="data">
-					<td class="data" width="30px">1</td>
-					<td class="data">Data Anda</td>
-					<td class="data" width="75px">
-						<center>
-							<a href="#"> Sửa </a>&nbsp;&nbsp;&nbsp; <a href="#"> Xóa </a>
-						</center>
-					</td>
-				</tr>
+				<c:forEach items="${listCategory}" var="category">
+					<tr class="data">
+						<td class="data" width="30px">${category.id}</td>
+						<td class="data">${category.name}</td>
+						<td class="data" width="75px">
+							<center>
+								<a href="update_category?id=${category.id}"> Sửa </a>&nbsp;&nbsp;&nbsp;
+								<a
+									onclick="return confirm('Bạn có muốn xóa danh mục ${category.name} ?')"
+									href="delete_category?id=${category.id}">Xóa</a>
+							</center>
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 		<div class="clear"></div>
