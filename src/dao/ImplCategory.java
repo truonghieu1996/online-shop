@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import models.Category;
 import models.Connector;
@@ -82,10 +83,10 @@ public class ImplCategory implements Icategory {
 	}
 
 	@Override
-	public ArrayList<Category> getListCategory() throws SQLException{
+	public List<Category> getListCategory() throws SQLException{
 	        Connection cons = Connector.getConnection();
 	        String sql = "SELECT * FROM category";
-	        ArrayList<Category> list = new ArrayList<>();
+	        List<Category> list = new ArrayList<>();
 	        try {
 	            PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
 	            ResultSet rs = ps.executeQuery();
@@ -101,13 +102,4 @@ public class ImplCategory implements Icategory {
 	        }
 	        return list;
 	}
-//	public static void main(String[] args) {
-//		ImplCategory category = new ImplCategory();
-//		int rs = category.Update(1, "SAMSUNG");
-//		if(rs >0) {
-//			System.out.println("Success");
-//		}else {
-//			System.out.println("unsucess");
-//		}
-//	}
 }

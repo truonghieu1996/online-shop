@@ -25,22 +25,27 @@
 				<tr class="data">
 					<th align="center" class="data" width="30px">ID</th>
 					<th align="center" class="data">Tên danh mục</th>
-					<th align="center" class="data" width="75px">#</th>
+					<th align="center" class="data" width="75px">Tùy chọn</th>
 				</tr>
-				<c:forEach items="${listCategory}" var="category">
-					<tr class="data">
-						<td class="data" width="30px">${category.id}</td>
-						<td class="data">${category.name}</td>
-						<td class="data" width="75px">
-							<center>
-								<a href="update_category?id=${category.id}"> Sửa </a>&nbsp;&nbsp;&nbsp;
-								<a
-									onclick="return confirm('Bạn có muốn xóa danh mục ${category.name} ?')"
-									href="delete_category?id=${category.id}">Xóa</a>
-							</center>
-						</td>
-					</tr>
-				</c:forEach>
+				<c:if test="${noti == true}">
+					<c:forEach items="${listCategory}" var="category">
+						<tr class="data">
+							<td class="data" width="30px">${category.id}</td>
+							<td class="data">${category.name}</td>
+							<td class="data" width="75px">
+								<center>
+									<a href="update_category?id=${category.id}"> Sửa </a>&nbsp;&nbsp;&nbsp;
+									<a
+										onclick="return confirm('Bạn có muốn xóa danh mục ${category.name} ?')"
+										href="delete_category?id=${category.id}">Xóa</a>
+								</center>
+							</td>
+						</tr>
+					</c:forEach>
+				</c:if>
+				<c:if test="${noti == false}">
+					<tr class="data"></tr>
+				</c:if>
 			</table>
 		</div>
 		<div class="clear"></div>

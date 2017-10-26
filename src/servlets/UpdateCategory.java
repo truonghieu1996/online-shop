@@ -55,12 +55,7 @@ public class UpdateCategory extends HttpServlet {
 		if (category_name != "") {
 			if (category.Update(category_id, category_name) > 0) {
 				response.sendRedirect("mn_category");
-			} else {
-				request.setAttribute("noti", "Cập nhật không thành công!");
 			}
-		}else {
-			request.setAttribute("noti", "Tên danh mục không được bỏ trống!");
 		}
 	}
-
 }

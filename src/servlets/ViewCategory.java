@@ -24,17 +24,23 @@ public class ViewCategory extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ImplCategory category = new ImplCategory();
 		List<Category> listCategory = null;
+		boolean check = false;
 		try {
 			listCategory = category.getListCategory();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		if(listCategory != null){
+			check = true;
+			request.setAttribute("noti", check);
 			request.setAttribute("listCategory", listCategory);
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF//page/admin/category.jsp");
+			RequestDispatcher dispatcher;
+			dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF//page/admin/category.jsp");
 			dispatcher.forward(request, response);
 		}else {
-			System.out.println("Error");
+			request.setAttribute("noti", check);
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF//page/admin/category.jsp");
+			dispatcher.forward(request, response);
 		}
 	}
 

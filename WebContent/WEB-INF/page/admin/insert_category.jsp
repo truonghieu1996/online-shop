@@ -17,7 +17,7 @@
 		<jsp:include page="menu.jsp"></jsp:include>
 		<div id="rightContent">
 			<h3>Thêm danh mục</h3>
-			<form action="add_category" method="post">
+			<form action="add_category" method="post" onsubmit="return validateForm()">
 				<table width="95%">
 					<tr>
 						<td width="125px"><b>Tên danh mục</b></td>
@@ -29,6 +29,16 @@
 						</td>
 					</tr>
 				</table>
+				<script type="text/javascript">
+					function validateForm(){
+						var nameCategory = document.getElementById('Category_name').value;
+						if(nameCategory == ''){
+							alert("Tên danh mục không được bỏ trống!");
+							return false;
+						}
+						return true;
+					}
+				</script>
 			</form>
 		</div>
 		<div class="clear"></div>

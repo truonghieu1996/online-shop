@@ -1,7 +1,7 @@
 package dao;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 import models.Category;
 
@@ -15,5 +15,5 @@ public interface Icategory {
 	
 	public Category getCategoryById(int id) throws SQLException;
 	
-	public ArrayList<Category> getListCategory() throws SQLException;
+	public List<Category> getListCategory() throws SQLException;
 }

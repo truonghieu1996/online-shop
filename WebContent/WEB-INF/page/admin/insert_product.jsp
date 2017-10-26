@@ -5,67 +5,90 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<c:set var="root" value="${pageContext.request.contextPath}"/>
-<link rel="stylesheet" type="text/css" href="${root}/resource/css/mos-style.css">
-<title>Insert category</title>
+<c:set var="root" value="${pageContext.request.contextPath}" />
+<link rel="stylesheet" type="text/css"
+	href="${root}/resource/css/mos-style.css">
+<%-- <script src="${root}/resource/js/ckeditor/ckeditor.js"></script> --%>
+<title>Insert product</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
-
+	<jsp:include page="header.jsp"></jsp:include>
 	<div id="wrapper">
 		<jsp:include page="menu.jsp"></jsp:include>
 		<div id="rightContent">
-		<h3>Thêm sản phẩm</h3>
-		<table width="95%">
-			<tr>
-				<td width="125px"><b>Input text pendek</b></td>
-				<td><input type="text" class="pendek"></td>
-			</tr>
-			<tr>
-				<td><b>Input text sedang</b></td>
-				<td><input type="text" class="sedang"></td>
-			</tr>
-			<tr>
-				<td><b>Input text panjang</b></td>
-				<td><input type="text" class="panjang"></td>
-			</tr>
-			<tr>
-				<td><b>Radio</b></td>
-				<td><input type="radio" name="radio" id="radio" value="radio 1">Radio
-					1 <input type="radio" name="radio" id="radio" value="radio 2">Radio
-					2</td>
-			</tr>
-			<tr>
-				<td><b>Checkbox</b></td>
-				<td><input type="checkbox" name="checkbox" id="checkbox"
-					value="checkbox 1">Checkbox 1<br> <input
-					type="checkbox" name="checkbox" id="checkbox" value="checkbox 2">Checkbox
-					2<br> <input type="checkbox" name="checkbox" id="checkbox"
-					value="checkbox 3">Checkbox 3<br> <input
-					type="checkbox" name="checkbox" id="checkbox" value="checkbox 4">Checkbox
-					4<br></td>
-			</tr>
-			<tr>
-				<td><b>Pilihan</b></td>
-				<td><select>
-						<option selected>-- pilihan --</option>
-						<option value="">Pilihan</option>
-				</select></td>
-			</tr>
-			<tr>
-				<td><b>Textarea</b></td>
-				<td><textarea></textarea></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<input type="submit" class="button" value="Thêm"> 
-					<input type="reset" class="button" value="Nhập lại">
-				</td>
-			</tr>
-		</table>
-	</div>
-	<div class="clear"></div>
+			<h3>Thêm sản phẩm</h3>
+			<form action="add_product" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+				<table width="95%">
+					<tr>
+						<td><b>Danh mục</b></td>
+						<td><select id="idCategory" name="idCategory">
+								<option value="0" selected>-- Chọn danh mục --</option>
+								<c:forEach items="${listCategory}" var="category">
+									<option value="${category.id}">${category.name}</option>
+								</c:forEach>
+						</select></td>
+					</tr>
+					<tr>
+						<td width="125px"><b>Tên sản phẩm</b></td>
+						<td><input type="text" class="sedang" id="nameProduct"
+							name="nameProduct" value=""></td>
+					</tr>
+					<tr>
+						<td><b>Số lượng</b></td>
+						<td><input type="number" min="0" class="sedang"
+							id="amountProduct" name="amountProduct" value="0"></td>
+					</tr>
+					<tr>
+						<td><b>Giá</b></td>
+						<td><input type="number" min="0" class="sedang"
+							id="priceProduct" name="priceProduct" value="0"></td>
+					</tr>
+					<tr>
+							<td><b>Hình ảnh</b></td>
+							<td>
+								<input type="file" accept="image/*" id="imageProduct" name="imageProduct" />
+							</td> 
+					</tr>
+					<tr>
+						<td><b>Chi tiết</b></td>
+						<td><textarea id="descriptionProduct" name="descriptionProduct"></textarea></td>
+						<!-- class="form-control ckeditor" -->
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="submit" class="button" value="Thêm">
+						</td>
+					</tr>
+				</table>
+				<script type="text/javascript">
+					function validateForm(){
+						var idCategory = document.getElementById('idCategory').value;
+						var nameProduct = document.getElementById('nameProduct').value;
+						var priceProduct = document.getElementById('priceProduct').value;
+						var description = document.getElementById('descriptionProduct').value;
+						var imageProduct = document.getElementById('imageProduct').value;
+						if(idCategory == 0){
+							alert("Vui lòng chọn danh mục sản phẩm!");
+							return false;
+						}else if(nameProduct == ''){
+							alert("Tên sản phẩm không được bỏ trống!");
+							return false;
+						}else if(priceProduct == 0){
+							alert("Giá sản phẩm không được bỏ trống!");
+							return false;
+						}else if(description == ""){
+							alert("Mô tả sản phẩm không được bỏ trống!");
+							return false;
+						}else if(imageProduct == ''){
+							alert("Vui lòng chọn hình ảnh cho sản phẩm!");
+							return false;
+						}
+						return true;
+					}
+				</script>
+			</form>
+		</div>
+		<div class="clear"></div>
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
 </body>

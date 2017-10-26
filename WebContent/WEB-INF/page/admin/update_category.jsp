@@ -31,6 +31,16 @@
 						</td>
 					</tr>
 				</table>
+				<script type="text/javascript">
+					function validateForm(){
+						var nameCategory = document.getElementById('Category_name').value;
+						if(nameCategory == ''){
+							alert("Tên danh mục không được bỏ trống!");
+							return false;
+						}
+						return true;
+					}
+				</script>
 			</form>
 		</div>
 		<div class="clear"></div>
