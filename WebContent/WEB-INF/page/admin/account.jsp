@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Manage Category</title>
+<title>Manage Account</title>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" type="text/css"
 	href="${root}/resource/css/mos-style.css">
@@ -16,28 +16,29 @@
 	<div id="wrapper">
 		<jsp:include page="menu.jsp"></jsp:include>
 		<div id="rightContent">
-			<h3>Quản lí danh mục</h3>
-			<form action="add_category" method="get">
-				<input type="submit" class="button" value="Thêm">
-			</form>
+			<h3>Quản lí tài khoản</h3>
 			<table class="data">
 
 				<tr class="data">
-					<th align="center" class="data" width="30px">NO.</th>
-					<th align="center" class="data">Tên danh mục</th>
+					<th align="center" class="data">Họ và tên</th>
+					<th align="center" class="data">Tên đăng nhâp</th>
+					<th align="center" class="data">Quyền hạng</th>
 					<th align="center" class="data" width="75px">Tùy chọn</th>
 				</tr>
 				<c:if test="${noti == true}">
-					<c:forEach items="${listCategory}" var="category">
+					<c:forEach items="${listaccount}" var="account">
 						<tr class="data">
-							<td class="data" width="30px">${category.id}</td>
-							<td class="data">${category.name}</td>
+							<td class="data">${account.displayname}</td>
+							<td class="data">${account.username}</td>
+							<td class="data"><c:if test="${account.role == 1}">Quản trị viên</c:if>
+								<c:if test="${account.role != 1}">Quản lí</c:if></td>
 							<td class="data" width="75px">
 								<center>
-									<a href="update_category?id=${category.id}"> Sửa </a>&nbsp;&nbsp;&nbsp;
+									<c:if test="${account.role != 1}">
 									<a
-										onclick="return confirm('Bạn có muốn xóa danh mục ${category.name} ?')"
-										href="delete_category?id=${category.id}">Xóa</a>
+											onclick="return confirm('Bạn có muốn xóa tài khoản ${account.displayname} ?')"
+											href="delete_account?username=${account.username}">Xóa</a>
+									</c:if>
 								</center>
 							</td>
 						</tr>

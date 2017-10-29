@@ -14,5 +14,6 @@ public interface IProduct {
 			int amount) throws SQLException;
 	public int Delete(int id) throws SQLException;
 	public Product getProductById(int id) throws SQLException;
+	public Product getProductByIdCategory(int id) throws SQLException;
 	public List<ProductTeam> getListProduct() throws SQLException;
 }

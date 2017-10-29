@@ -17,12 +17,27 @@
 	<div id="loginForm">
 		<div class="headLoginForm">Đăng nhập quản trị</div>
 		<div class="fieldLogin">
-			<form method="POST" action="">
-				<label>Tên người dùng</label> <br> <input type="text" class="login">
-				<br> <label>Mật khẩu</label> <br> <input type="password"
+			<form method="POST" action="login" onsubmit="return validateForm()">
+				<label style="color:red">${message}</label> <br>
+				<label>Tên người dùng</label> <br> <input type="text" id="username" name="username" class="login">
+				<br> <label>Mật khẩu</label> <br> <input type="password" id="password" name="password"
 					class="login"> <br> <input type="submit"
 					class="button" value="Đăng nhập">
 			</form>
+			<script type="text/javascript">
+				function validateForm(){
+					var username = document.getElementById('username').value;
+					var password = document.getElementById('password').value;
+					if(username == ''){
+						alert("Tên đăng nhập không được bỏ trống!");
+						return false;
+					}else if(password == ''){
+						alert("Mật khẩu không được bỏ trống!");
+						return false;
+					}
+					return true;
+				}
+			</script>
 		</div>
 	</div>
 </body>

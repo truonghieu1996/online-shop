@@ -10,7 +10,7 @@ public class Connector {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             cons = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/Shop", "root", "root");
+                    "jdbc:mysql://localhost:3306/Shop?characterEncoding=utf8", "root", "root");
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
         }

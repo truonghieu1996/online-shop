@@ -31,6 +31,9 @@ public class UpdateCategory extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		int id = Integer.valueOf(request.getParameter("id"));
 		ImplCategory implcategory = new ImplCategory();
 		Category category = null;
@@ -38,6 +41,8 @@ public class UpdateCategory extends HttpServlet {
 			category = (Category) implcategory.getCategoryById(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			request.setAttribute("message",e.toString());
+			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request, response);
 		}
 		if (category != null) {
 			request.setAttribute("category", category);
@@ -49,6 +54,8 @@ public class UpdateCategory extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String category_name = request.getParameter("Category_name");
 		int category_id = Integer.parseInt(request.getParameter("Category_id"));
 		ImplCategory category = new ImplCategory();

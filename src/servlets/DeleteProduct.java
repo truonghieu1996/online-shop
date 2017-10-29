@@ -31,6 +31,8 @@ public class DeleteProduct extends HttpServlet {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			request.setAttribute("message",e.toString());
+			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request, response);
 		}
 	}
 

@@ -9,32 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ImplCategory;
-
-@WebServlet("/add_category")
-public class AddCategory extends HttpServlet {
+@WebServlet("/view_bill")
+public class ViewBill extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public AddCategory() {
+    public ViewBill() {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/insert_category.jsp");
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/bill.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		String category_name = request.getParameter("Category_name");
-		if(!"".equals(category_name)) {
-			ImplCategory category = new ImplCategory();
-			if(category.Add(category_name) > 0) {
-				response.sendRedirect("mn_category");
-			}
-		}
 	}
 
 }

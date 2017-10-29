@@ -24,7 +24,10 @@ public class Logout extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getSession().removeAttribute("username");
+		request.getSession().removeAttribute("displayname");
+		request.getSession().removeAttribute("role");
+		request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/login.jsp").forward(request, response);;
 	}
 
 }

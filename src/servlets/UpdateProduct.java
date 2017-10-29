@@ -25,19 +25,24 @@ public class UpdateProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String SAVE_DIRECTORY = "resource/upload";
 
-    public UpdateProduct() {
+	public UpdateProduct() {
 
-    }
-    
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-    	int idProduct = Integer.valueOf(request.getParameter("id"));
-    	ImplCategory category = new ImplCategory();
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		int idProduct = Integer.valueOf(request.getParameter("id"));
+		ImplCategory category = new ImplCategory();
 		List<Category> list = null;
 		try {
 			list = category.getListCategory();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			request.setAttribute("message", e.toString());
+			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request,
+					response);
 		}
 		request.setAttribute("listCategory", list);
 		ImplProduct implProduct = new ImplProduct();
@@ -46,14 +51,20 @@ public class UpdateProduct extends HttpServlet {
 			product = implProduct.getProductById(idProduct);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			request.setAttribute("message", e.toString());
+			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request,
+					response);
 		}
 		request.setAttribute("product", product);
 		RequestDispatcher dispatcher = request.getServletContext()
 				.getRequestDispatcher("/WEB-INF/page/admin/update_product.jsp");
 		dispatcher.forward(request, response);
-    }
+	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String fileName = "";
 		int idProduct = Integer.valueOf(request.getParameter("idProduct"));
 		int idCategory = Integer.valueOf(request.getParameter("idCategory"));
@@ -82,21 +93,24 @@ public class UpdateProduct extends HttpServlet {
 			}
 			// Part list (multi files).
 			for (Part part : request.getParts()) {
-				if(extractFileName(part) != null)
-				{
+				if (extractFileName(part) != null) {
 					fileName = extractFileName(part);
 					System.out.println(fileName);
-					if (fileName.length() > 0 && idCategory != 0 && !"".equals(nameProduct)
-							&& priceProduct != 0 && !"".equals(description)){
+					if (fileName.length() > 0 && idCategory != 0 && !"".equals(nameProduct) && priceProduct != 0
+							&& !"".equals(description)) {
 						String filePath = fullSavePath + File.separator + fileName;
 						System.out.println("Write attachment to file: " + filePath);
 						try {
-							if (implProduct.Update(idProduct, idCategory,nameProduct,priceProduct, description, fileName, amount) > 0) {
+							if (implProduct.Update(idProduct, idCategory, nameProduct, priceProduct, description,
+									fileName, amount) > 0) {
 								part.write(filePath);
 								response.sendRedirect("mn_product");
 							}
 						} catch (SQLException e) {
 							e.printStackTrace();
+							request.setAttribute("message", e.toString());
+							request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp")
+									.forward(request, response);
 						}
 					}
 				}
@@ -104,14 +118,21 @@ public class UpdateProduct extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			request.setAttribute("message", e.toString());
+			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request,
+					response);
 		}
-		if("".equals(fileName)) {
+		if ("".equals(fileName)) {
 			try {
-				if (implProduct.UpdateOutFile(idProduct, idCategory,nameProduct,priceProduct, description, amount) > 0) {
+				if (implProduct.UpdateOutFile(idProduct, idCategory, nameProduct, priceProduct, description,
+						amount) > 0) {
 					response.sendRedirect("mn_product");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				request.setAttribute("message", e.toString());
+				request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request,
+						response);
 			}
 		}
 	}

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +22,8 @@ public class ViewProduct extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		ImplProduct implProduct = new ImplProduct();
 		List<ProductTeam> list = null;
 		boolean check = false;
@@ -36,13 +37,10 @@ public class ViewProduct extends HttpServlet {
 			check = true;
 			request.setAttribute("noti", check);
 			request.setAttribute("listProduct", list);
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/product.jsp");
-			dispatcher.forward(request, response);
 		}else {
 			request.setAttribute("noti", check);
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/product.jsp");
-			dispatcher.forward(request, response);
 		}
+		request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/product.jsp").forward(request, response);
 	}
 
 }

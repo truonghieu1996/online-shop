@@ -12,7 +12,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(filterName="LoginFilter", urlPatterns= {"/mn_product","/mn_category","/admin","/view_statistical","/add_category","/add_product"})
+@WebFilter(filterName="LoginFilter", urlPatterns= {"/mn_product","/mn_category","/mn_account","/update_account",
+		"/delete_account","/admin","/view_bill","/add_category",
+		"/add_product","/view_statistical","/view_account","/add_product","/change_password",
+		"/update_product","/delete_product"})
 public class LoginFilter implements Filter {
 
     public LoginFilter() {
@@ -27,7 +30,7 @@ public class LoginFilter implements Filter {
 		HttpServletRequest httpServletRequest = (HttpServletRequest)request;
 		HttpSession session = httpServletRequest.getSession();
 		String username = (String)session.getAttribute("username");
-		if(username != null) {
+		if(username == null) {
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/login.jsp");
 			dispatcher.forward(request, response);
 		}else {

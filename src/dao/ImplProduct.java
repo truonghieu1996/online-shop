@@ -110,4 +110,24 @@ public class ImplProduct implements IProduct {
 		return list;
 	}
 
+	@Override
+	public Product getProductByIdCategory(int id) throws SQLException {
+		Connection conn = Connector.getConnection();
+		String sql = "SELECT * FROM product WHERE category_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, id);
+		Product product = new Product();
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			product.setId(rs.getInt("product_id"));
+			product.setName(rs.getString("product_name"));
+			product.setPrice(rs.getDouble("product_price"));
+			product.setDescription(rs.getString("product_description"));
+			product.setImage(rs.getString("product_image"));
+			product.setIdCategory(rs.getInt("category_id"));
+			product.setAmount(rs.getInt("amount"));
+		}
+		return product;
+	}
+
 }

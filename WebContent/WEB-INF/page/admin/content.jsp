@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="rightContent">
-		<h3>Dashboard</h3>
+		<h3>Hệ thống quản lí bán hàng online điện thoại thông minh</h3>
 		<div class="quoteOfDay">
 			<b>Quote of the day :</b> <br> <i style="color: #5b5b5b;">"If
 				you think you can, you really can"</i>

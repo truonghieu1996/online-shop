@@ -30,12 +30,16 @@ public class AddProduct extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		ImplCategory category = new ImplCategory();
 		List<Category> list = null;
 		try {
 			list = category.getListCategory();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			request.setAttribute("message",e.toString());
+			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request, response);
 		}
 		request.setAttribute("listCategory", list);
 		RequestDispatcher dispatcher = request.getServletContext()
@@ -45,6 +49,8 @@ public class AddProduct extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		int idCategory = Integer.valueOf(request.getParameter("idCategory"));
 		String nameProduct = request.getParameter("nameProduct");
 		double priceProduct = Double.valueOf(request.getParameter("priceProduct"));
@@ -84,12 +90,16 @@ public class AddProduct extends HttpServlet {
 						}
 					} catch (SQLException e) {
 						e.printStackTrace();
+						request.setAttribute("message",e.toString());
+						request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request, response);
 					}
 				}
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			request.setAttribute("message",e.toString());
+			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request, response);
 		}
 	}
 
