@@ -50,10 +50,12 @@
 							</c:if>
 							<td class="data" width="75px">
 								<center>
-									<a href="update_product?id=${product.id}"> Sửa </a>&nbsp;&nbsp;&nbsp;
+									<a href="update_product?id=${product.id}"><img align="middle"
+								src="resource/img/edit.png"></a>&nbsp;&nbsp;&nbsp;
 									<a
 										onclick="return confirm('Bạn có muốn xóa sản phẩm ${product.name} ?')"
-										href="delete_product?id=${product.id}">Xóa</a>
+										href="delete_product?id=${product.id}"><img align="middle"
+								src="resource/img/delete.png"></a>
 								</center>
 							</td>
 						</tr>

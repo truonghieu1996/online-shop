@@ -13,7 +13,7 @@
 			<li><a href="${pageContext.request.contextPath}/admin">Trang chủ</a></li>
 			<li><a href="${pageContext.request.contextPath}/mn_category">Danh mục</a></li>
 			<li><a href="${pageContext.request.contextPath}/mn_product">Sản phẩm</a></li>
-			<li><a href="${pageContext.request.contextPath}/view_bill">Hóa đơn</a></li>
+			<li><a href="${pageContext.request.contextPath}/mn_order">Đơn hàng</a></li>
 			<c:if test="${role == 1}">
 				<li><a href="${pageContext.request.contextPath}/view_statistical">Thống kê</a></li>
 				<li><a href="${pageContext.request.contextPath}/mn_account">Tài khoản</a></li>

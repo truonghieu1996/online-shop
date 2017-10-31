@@ -34,10 +34,15 @@
 								<c:if test="${account.role != 1}">Quản lí</c:if></td>
 							<td class="data" width="75px">
 								<center>
-									<c:if test="${account.role != 1}">
 									<a
+										onclick="return confirm('Bạn có muốn reset mật khẩu cho tài khoản ${account.displayname} ?')"
+										href="resest_password?username=${account.username}"><img
+										align="middle" src="resource/img/edit.png"></a>&nbsp;&nbsp;&nbsp;
+									<c:if test="${account.role != 1}">
+										<a
 											onclick="return confirm('Bạn có muốn xóa tài khoản ${account.displayname} ?')"
-											href="delete_account?username=${account.username}">Xóa</a>
+											href="delete_account?username=${account.username}"><img
+											align="middle" src="resource/img/delete.png"></a>
 									</c:if>
 								</center>
 							</td>

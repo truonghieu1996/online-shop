@@ -34,10 +34,12 @@
 							<td class="data">${category.name}</td>
 							<td class="data" width="75px">
 								<center>
-									<a href="update_category?id=${category.id}"> Sửa </a>&nbsp;&nbsp;&nbsp;
+									<a href="update_category?id=${category.id}"><img align="middle"
+								src="resource/img/edit.png"></a>&nbsp;&nbsp;&nbsp;
 									<a
 										onclick="return confirm('Bạn có muốn xóa danh mục ${category.name} ?')"
-										href="delete_category?id=${category.id}">Xóa</a>
+										href="delete_category?id=${category.id}"><img align="middle"
+								src="resource/img/delete.png"></a>
 								</center>
 							</td>
 						</tr>

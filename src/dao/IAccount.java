@@ -12,7 +12,6 @@ public interface IAccount {
 
 	public int UpdatePasswordByUsername(String username, String password) throws SQLException;
 	
-
 	public Account getAccountByUsername(String username) throws SQLException;
 	
 	public Account getAccountByPassword(String password) throws SQLException;
