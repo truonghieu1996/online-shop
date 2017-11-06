@@ -33,27 +33,22 @@ public class UpdateProduct extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		int idProduct = Integer.valueOf(request.getParameter("id"));
+		
 		ImplCategory category = new ImplCategory();
 		List<Category> list = null;
 		try {
 			list = category.getListCategory();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			request.setAttribute("message", e.toString());
-			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request,
-					response);
 		}
 		request.setAttribute("listCategory", list);
 		ImplProduct implProduct = new ImplProduct();
 		Product product = null;
 		try {
+			int idProduct = Integer.valueOf(request.getParameter("id"));
 			product = implProduct.getProductById(idProduct);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			request.setAttribute("message", e.toString());
-			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request,
-					response);
 		}
 		request.setAttribute("product", product);
 		RequestDispatcher dispatcher = request.getServletContext()
@@ -108,9 +103,6 @@ public class UpdateProduct extends HttpServlet {
 							}
 						} catch (SQLException e) {
 							e.printStackTrace();
-							request.setAttribute("message", e.toString());
-							request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp")
-									.forward(request, response);
 						}
 					}
 				}
@@ -118,9 +110,6 @@ public class UpdateProduct extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("message", e.toString());
-			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request,
-					response);
 		}
 		if ("".equals(fileName)) {
 			try {
@@ -130,9 +119,6 @@ public class UpdateProduct extends HttpServlet {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
-				request.setAttribute("message", e.toString());
-				request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request,
-						response);
 			}
 		}
 	}

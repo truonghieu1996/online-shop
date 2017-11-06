@@ -27,8 +27,6 @@ public class CheckUsername extends HttpServlet {
 			account = implaccount.getAccountByUsername(username);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			request.setAttribute("message",e.toString());
-			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request, response);
 		}
 		if(username.equals(account.getUsername())) {
 			response.setCharacterEncoding("UTF-8");

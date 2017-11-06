@@ -38,8 +38,6 @@ public class AddProduct extends HttpServlet {
 			list = category.getListCategory();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			request.setAttribute("message",e.toString());
-			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request, response);
 		}
 		request.setAttribute("listCategory", list);
 		RequestDispatcher dispatcher = request.getServletContext()
@@ -90,16 +88,12 @@ public class AddProduct extends HttpServlet {
 						}
 					} catch (SQLException e) {
 						e.printStackTrace();
-						request.setAttribute("message",e.toString());
-						request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request, response);
 					}
 				}
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("message",e.toString());
-			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request, response);
 		}
 	}
 

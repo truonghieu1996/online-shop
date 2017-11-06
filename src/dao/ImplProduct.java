@@ -116,8 +116,8 @@ public class ImplProduct implements IProduct {
 		String sql = "SELECT * FROM product WHERE category_id=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);
-		Product product = new Product();
 		ResultSet rs = ps.executeQuery();
+		Product product = new Product();
 		while (rs.next()) {
 			product.setId(rs.getInt("product_id"));
 			product.setName(rs.getString("product_name"));
@@ -128,6 +128,28 @@ public class ImplProduct implements IProduct {
 			product.setAmount(rs.getInt("amount"));
 		}
 		return product;
+	}
+
+	@Override
+	public List<Product> getListProductByIdCategory(int id) throws SQLException {
+		Connection conn = Connector.getConnection();
+		String sql = "SELECT * FROM product WHERE category_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, id);
+		ResultSet rs = ps.executeQuery();
+		List<Product> list = new ArrayList<>();
+		while (rs.next()) {
+			Product product = new Product();
+			product.setId(rs.getInt("product_id"));
+			product.setName(rs.getString("product_name"));
+			product.setPrice(rs.getDouble("product_price"));
+			product.setDescription(rs.getString("product_description"));
+			product.setImage(rs.getString("product_image"));
+			product.setIdCategory(rs.getInt("category_id"));
+			product.setAmount(rs.getInt("amount"));
+			list.add(product);
+		}
+		return list;
 	}
 
 }

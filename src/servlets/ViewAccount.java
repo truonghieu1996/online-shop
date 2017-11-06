@@ -34,8 +34,6 @@ public class ViewAccount extends HttpServlet {
 				list = implAccount.getListAccount();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				request.setAttribute("message",e.toString());
-				request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request, response);
 			}
 			if (list != null) {
 				check = true;

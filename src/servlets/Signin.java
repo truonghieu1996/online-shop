@@ -55,8 +55,6 @@ public class Signin extends HttpServlet {
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
-					request.setAttribute("message",e.toString());
-					request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request, response);
 				}
 			}
 			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/signin.jsp").forward(request,

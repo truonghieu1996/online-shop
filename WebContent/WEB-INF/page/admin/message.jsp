@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Message</title>
 </head>
 <body>
 	<h1 style="color:blue" align="center">Thông báo từ hệ thống</h1>

@@ -1,0 +1,22 @@
+.total {
+	font-weight: bold;
+	font-size: 18px;
+}
+.btn-payment a {
+	margin-left: 1rem;
+	float: right;
+} 
+.table  th {
+	text-align: center;
+}
+.btn-cancel {
+	width: 100%;
+	position: relative;
+}
+.cancel {
+	background-image: url("/images/cancel.png");
+	width: 20px;
+	position: absolute;
+	top: 60px;	
+	right: 10px;
+}

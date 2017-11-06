@@ -34,15 +34,13 @@ public class UpdateCategory extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		int id = Integer.valueOf(request.getParameter("id"));
 		ImplCategory implcategory = new ImplCategory();
 		Category category = null;
 		try {
+			int id = Integer.valueOf(request.getParameter("id"));
 			category = (Category) implcategory.getCategoryById(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			request.setAttribute("message",e.toString());
-			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/error.jsp").forward(request, response);
 		}
 		if (category != null) {
 			request.setAttribute("category", category);
