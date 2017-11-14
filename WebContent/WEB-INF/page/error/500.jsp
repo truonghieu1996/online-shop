@@ -25,8 +25,7 @@
 		<img src="${root}/resource/img/dribbbler_error_500_blue.jpg" title="error" width="400"/>
 		<p>
 			<span> <label>O</label>hh.....
-			</span> Lỗi máy chủ vui lòng truy cập chức năng này lại sau. 
-		</p>
+			</span> Server không thể đáp ứng yêu cầu này! :(</p>
 			<a href="javascript: history.go(-1)">Về trang trước</a>
 		<div class="copy-right">
 			<p>&copy; Trương Hiếu - Phùng Nguyên - Bình Nguyễn | DH15TH - An

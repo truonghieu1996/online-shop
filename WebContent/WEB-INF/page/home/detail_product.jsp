@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="${root}/resource/css/bootstrap.css">
 <link rel="stylesheet" href="${root}/resource/css/font-awesome.min.css">
 <link rel="stylesheet" href="${root}/resource/css/style.css">
-    <link rel="stylesheet" href="${root}/resource/css/product-detail.css">
+<link rel="stylesheet" href="${root}/resource/css/product-detail.css">
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="${root}/resource/js/jquery-3.2.1.min.js"></script>
@@ -38,19 +38,28 @@
 						value="${product.price}" />
 					VNĐ
 				</h4>
-				<div class="btn btn-danger btn-cart">
-					<a href="payment.html" style="color:white;">Mua Ngay</a>
-				</div>
-				<div class="btn btn-danger btn-cart">
-					<a href="#" style="color:white;">Thêm Vào Giỏ Hàng</a>
-				</div>
+				<c:if test="${product.amount != 0}">
+					<div class="btn btn-danger btn-cart">
+						<a href="payment?id=${product.id}" style="color: white;">Mua
+							Ngay</a>
+					</div>
+					<div class="btn btn-danger btn-cart">
+						<a href="#" style="color: white;">Thêm Vào Giỏ Hàng</a>
+					</div>
+				</c:if>
 			</div>
 		</div>
 		<!--**************** Product detail ******************-->
 		<div class="right-content col-md-8">
 			<nav id="navbar-example2" class="navbar navbar-light menu-product">
-			<a class="navbar-brand" href="#">${product.name}</a>
-			</nav>
+			<a class="navbar-brand" href="#"> ${product.name} <c:if
+					test="${product.amount == 0}">
+					<span style="color: red">(Tạm hết hàng)</span>
+				</c:if> <c:if test="${product.amount != 0}">
+					<span style="color: blue">(Còn hàng)</span>
+				</c:if>
+			</a> </nav>
+
 			<div class="product-detail" data-spy="scroll"
 				data-target="#navbar-example2" data-offset="0">
 				<h4 id="short-info">Thông tin chi tiết sản phẩm</h4>

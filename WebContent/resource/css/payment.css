@@ -11,7 +11,13 @@ input[type="text"] {
 	border: solid 1px #c5c5c5;
 	text-align: left;
 	padding: 0 5px;
-	margin-left: 10%;
+	width: 42%;
+}
+input[type="number"] {
+	border-radius: 5px;
+	border: solid 1px #c5c5c5;
+	text-align: left;
+	padding: 0 5px;
 	width: 42%;
 }
 input[type="text"]:focus {
@@ -23,9 +29,10 @@ label {
 }
 select {
 	border-radius: 5px;
-	border: solid 1px #c5c5c5;	
+	border: solid 1px #c5c5c5;
+	text-align: left;
 	padding: 0 5px;
-	margin-left: 10%;
+	width: 42%;
 }
 select:focus {
 	outline: none;

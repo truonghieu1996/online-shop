@@ -34,7 +34,7 @@
 								style="font-size: 1rem;">Giỏ Hàng
 									<div class="cart">
 										<i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i> <span
-											style="color: black;">6</span>
+											style="color: black;">0</span>
 									</div>
 							</a></li>
 						</ul>

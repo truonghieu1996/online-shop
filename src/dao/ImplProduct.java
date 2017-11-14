@@ -152,4 +152,13 @@ public class ImplProduct implements IProduct {
 		return list;
 	}
 
+	@Override
+	public int updateAmount(Connection conn, int amount, int id) throws SQLException {
+		String sql = "UPDATE product SET amount = ? WHERE product_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, amount);
+		ps.setInt(2, id);
+		return ps.executeUpdate();
+	}
+
 }
