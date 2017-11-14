@@ -8,7 +8,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" type="text/css" href="${root}/resource/css/mos-style.css">
 <script src="${root}/resource/js/jquery.min.js" type="text/javascript"></script>
-<title>Signin</title>
+<title>Registe</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @WebFilter(filterName="LoginFilter", urlPatterns= {"/mn_product","/mn_category","/mn_account","/update_account",
 		"/delete_account","/admin","/view_bill","/add_category",
 		"/add_product","/view_statistical","/view_account","/add_product","/change_password",
-		"/update_product","/delete_product"})
+		"/update_product","/delete_product","/registe"})
 public class LoginFilter implements Filter {
 
     public LoginFilter() {

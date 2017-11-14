@@ -41,7 +41,7 @@
 					</p>
 					<p>
 						<i class="fa fa-envelope-o" aria-hidden="true"></i>
-						truonghieu682@email.com
+						truonghieu682@gmail.com
 					</p>
 					<p>
 						<i class="fa fa-phone" aria-hidden="true"></i> 01689.777.911

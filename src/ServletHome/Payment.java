@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ImplProduct;
-import dao.Order;
+import dao.ImplOrder;
 import models.Product;
 
 @WebServlet("/payment")
@@ -42,7 +42,7 @@ public class Payment extends HttpServlet {
 		int amountOrder = Integer.valueOf(request.getParameter("txtamount"));
 		int idProduct = Integer.valueOf(request.getParameter("idProduct"));
 		if(!"".equals(fullName) && !"".equals(address) && !"".equals(phonenumber) && pamentMethod != 0 && amountOrder != 0) {
-			Order order = new Order();
+			ImplOrder order = new ImplOrder();
 			boolean checker = order.order(fullName, address, phonenumber, pamentMethod, idProduct, amountOrder);
 			request.setAttribute("checker", checker);
 			if(checker) {

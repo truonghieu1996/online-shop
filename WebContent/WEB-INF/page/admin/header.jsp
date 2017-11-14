@@ -14,7 +14,7 @@
 				Xin chào, ${displayname}
 				<br>
 				<c:if test="${role == 1}">
-					<a href="${pageContext.request.contextPath}/signin">Đăng Ký </a>|
+					<a href="${pageContext.request.contextPath}/registe">Đăng Ký </a>|
 				</c:if>
 				<a href="${pageContext.request.contextPath}/change_password">Thay đổi mật khẩu </a>|
 				<a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>

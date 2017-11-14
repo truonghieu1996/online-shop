@@ -12,11 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import dao.ImplAccount;
 
-@WebServlet("/signin")
-public class Signin extends HttpServlet {
+@WebServlet("/registe")
+public class Registe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Signin() {
+	public Registe() {
 
 	}
 
@@ -25,7 +25,7 @@ public class Signin extends HttpServlet {
 		HttpSession session = request.getSession();
 		int role = (int) session.getAttribute("role");
 		if (role == 1) {
-			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/signin.jsp").forward(request,
+			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/registe.jsp").forward(request,
 					response);
 		} else {
 			request.setAttribute("message", "Bạn không có quyền sử dụng chức năng này!");
@@ -57,7 +57,7 @@ public class Signin extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/signin.jsp").forward(request,
+			request.getServletContext().getRequestDispatcher("/WEB-INF/page/admin/registe.jsp").forward(request,
 					response);
 		} else {
 			request.setAttribute("message", "Bạn không có quyền sử dụng chức năng này!");
