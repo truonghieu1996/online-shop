@@ -40,7 +40,7 @@
 				</div>
 				<div class="payment-content">
 					<h5>Số lượng:</h5>
-					<input type="number" name="txtamount" id="txtamount" min="0"
+					<input type="number" name="txtamount" id="txtamount" min="0" max="${product.amount}"
 						value="1">
 				</div>
 			</div>

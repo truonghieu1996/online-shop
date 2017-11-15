@@ -55,8 +55,8 @@
 						<td class="data" width="75px">
 							<center>
 								<a href="order_detail?id=${order.idBill}"><img align="middle"
-									src="resource/img/detail.png" /> </a>&nbsp;&nbsp;&nbsp; <a
-									href="delete_order?idBillInf=${order.idBillInf}&idBill=${order.idBill}&idCustomer=${order.idCustomer}&idProduct=${order.idProduct}&amountOrder=${order.amount}"> <img align="middle"
+									src="resource/img/detail.png" /> </a>&nbsp;&nbsp;&nbsp; 
+									<a onclick="return confirm('Bạn có muốn hủy đơn hàng của ${order.fullName} ?')" href="delete_order?idBillInf=${order.idBillInf}&idBill=${order.idBill}&idCustomer=${order.idCustomer}&idProduct=${order.idProduct}&amountOrder=${order.amount}"> <img align="middle"
 									src="resource/img/delete.png">
 								</a>
 							</center>

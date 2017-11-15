@@ -105,20 +105,26 @@ public class ImplCategory implements Icategory {
 	}
 
 	@Override
-	public ArrayList<StatisticalCategory> statisticalCategory() {
-		ImplCategory implcategory = new ImplCategory();
-		ImplProduct implProduct = new ImplProduct();
-		ArrayList<StatisticalCategory> list = new ArrayList<>();
+	public List<StatisticalCategory> statisticalCategory() {
+		Connection cons = Connector.getConnection();
+		String sql = "SELECT category.category_name, SUM(product.amount) AS amount "
+				+ "FROM category JOIN product "
+				+ "ON category.category_id = product.category_id "
+				+ "GROUP BY category.category_name ";
+		List<StatisticalCategory> list = new ArrayList<>();
 		try {
-			for (Category category : implcategory.getListCategory()) {
-				list.add(new StatisticalCategory(category.getName(),
-						implProduct.getProductByIdCategory(category.getId()).getAmount()));
+			PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				StatisticalCategory statisticalCategory = new StatisticalCategory();
+				statisticalCategory.setNameCategory(rs.getString("category_name"));
+				statisticalCategory.setValue(rs.getInt("amount"));
+				list.add(statisticalCategory);
 			}
-			return list;
+			cons.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return list;
 	}
 }

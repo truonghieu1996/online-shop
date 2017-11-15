@@ -162,8 +162,6 @@ public class ImplOrder implements IOrder {
 			ImplProduct implProduct = new ImplProduct();
 			Product product = implProduct.getProductById(idProduct);
 			int amountNew = product.getAmount() + amountOrder;
-			implBillInfo.updateAmount(conn, amountNew, idBillInfo);
-			//Update amount product
 			implProduct.updateAmount(conn, amountNew, idProduct);
 			conn.commit();
 			checker = true;

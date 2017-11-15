@@ -1,7 +1,7 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +30,7 @@ public class ViewStatistical extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
 			ImplCategory implcategory = new ImplCategory();
-			ArrayList<StatisticalCategory> list = implcategory.statisticalCategory();
+			List<StatisticalCategory> list = implcategory.statisticalCategory();
 			if (list != null) {
 				request.setAttribute("listStatistical", list);
 			}

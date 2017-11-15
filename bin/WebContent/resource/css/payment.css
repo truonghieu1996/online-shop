@@ -1,0 +1,43 @@
+.payment {
+	border: 1px solid #c5c5c5;
+	border-radius: 5px;
+}
+.payment-content h5 {
+	width: 20%;
+	text-align: left;
+}
+input[type="text"] {
+	border-radius: 5px;
+	border: solid 1px #c5c5c5;
+	text-align: left;
+	padding: 0 5px;
+	width: 42%;
+}
+input[type="number"] {
+	border-radius: 5px;
+	border: solid 1px #c5c5c5;
+	text-align: left;
+	padding: 0 5px;
+	width: 42%;
+}
+input[type="text"]:focus {
+	outline: none;
+}
+
+label {
+	margin-left: 50px;
+}
+select {
+	border-radius: 5px;
+	border: solid 1px #c5c5c5;
+	text-align: left;
+	padding: 0 5px;
+	width: 42%;
+}
+select:focus {
+	outline: none;
+}
+.payment-content {
+	display: flex;
+	margin: 2rem 20% 0;
+}
