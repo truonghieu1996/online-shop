@@ -5,6 +5,7 @@ import java.util.Date;
 public class Order {
 	private int idCustomer;
 	private int idBill;
+	private int idBillInf;
 	private String fullName;
 	private String address;
 	private String phonenumber;
@@ -12,12 +13,14 @@ public class Order {
 	private Date checkOut;
 	private int pamentMethod;
 	private int status;
+	private int idProduct;
+	private int amount;
 
 	public Order() {
 	}
 
 	public Order(String fullName, String address, String phonenumber, Date checkIn, Date checkOut, int pamentMethod,
-			int status, int idCustomer, int idBill) {
+			int status, int idCustomer, int idBill, int idBillInf, int idProduct, int amount) {
 		this.fullName = fullName;
 		this.address = address;
 		this.phonenumber = phonenumber;
@@ -27,6 +30,9 @@ public class Order {
 		this.status = status;
 		this.idCustomer = idCustomer;
 		this.idBill = idBill;
+		this.idBillInf = idBillInf;
+		this.idProduct = idProduct;
+		this.amount = amount;
 	}
 
 	public String getFullName() {
@@ -100,4 +106,30 @@ public class Order {
 	public void setIdBill(int idBill) {
 		this.idBill = idBill;
 	}
+
+	public int getIdBillInf() {
+		return idBillInf;
+	}
+
+	public void setIdBillInf(int idBillInf) {
+		this.idBillInf = idBillInf;
+	}
+
+	public int getIdProduct() {
+		return idProduct;
+	}
+
+	public void setIdProduct(int idProduct) {
+		this.idProduct = idProduct;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	
+	
 }

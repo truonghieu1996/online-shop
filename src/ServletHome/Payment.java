@@ -35,6 +35,7 @@ public class Payment extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		boolean checker = false;
 		String fullName = request.getParameter("txtname");
 		String address = request.getParameter("txtaddress");
 		String phonenumber = request.getParameter("txtphone");
@@ -43,7 +44,11 @@ public class Payment extends HttpServlet {
 		int idProduct = Integer.valueOf(request.getParameter("idProduct"));
 		if(!"".equals(fullName) && !"".equals(address) && !"".equals(phonenumber) && pamentMethod != 0 && amountOrder != 0) {
 			ImplOrder order = new ImplOrder();
-			boolean checker = order.order(fullName, address, phonenumber, pamentMethod, idProduct, amountOrder);
+			try {
+				checker = order.order(fullName, address, phonenumber, pamentMethod, idProduct, amountOrder);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			request.setAttribute("checker", checker);
 			if(checker) {
 				request.setAttribute("message", "Đặt hàng thành công.");

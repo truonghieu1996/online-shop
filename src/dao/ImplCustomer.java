@@ -28,8 +28,7 @@ public class ImplCustomer implements ICustomer {
 	}
 
 	@Override
-	public int delete(int id) throws SQLException {
-		Connection conn = Connector.getConnection();
+	public int delete(Connection conn, int id) throws SQLException {
 		String sql ="DELETE FROM customer WHERE customer_id = ?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);

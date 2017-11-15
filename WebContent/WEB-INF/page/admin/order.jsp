@@ -37,7 +37,7 @@
 						<td class="data">${order.phonenumber}</td>
 						<td class="data">${order.address}</td>
 						<td class="data"><fmt:formatDate pattern = "dd/MM/yyyy" value = "${order.checkIn}" /></td>
-						<td class="data">${order.checkOut}</td>
+						<td class="data"><fmt:formatDate pattern = "dd/MM/yyyy" value = "${order.checkOut}" /></td>
 						<c:if test="${order.pamentMethod == 1}">
 							<td class="data">Tại cửa hàng</td>
 						</c:if>
@@ -56,7 +56,7 @@
 							<center>
 								<a href="order_detail?id=${order.idBill}"><img align="middle"
 									src="resource/img/detail.png" /> </a>&nbsp;&nbsp;&nbsp; <a
-									href="delete_order?id=1"> <img align="middle"
+									href="delete_order?idBillInf=${order.idBillInf}&idBill=${order.idBill}&idCustomer=${order.idCustomer}&idProduct=${order.idProduct}&amountOrder=${order.amount}"> <img align="middle"
 									src="resource/img/delete.png">
 								</a>
 							</center>

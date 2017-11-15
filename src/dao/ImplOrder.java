@@ -15,7 +15,7 @@ import models.Product;
 public class ImplOrder implements IOrder {
 	@Override
 	public boolean order(String fullName, String address, String phonenumber, int method, int idProduct,
-			int amountOrder) {
+			int amountOrder) throws SQLException {
 		boolean checker = false;
 		Connection conn = Connector.getConnection();
 		double totalPrice = 0;
@@ -46,6 +46,9 @@ public class ImplOrder implements IOrder {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+		}finally {
+			if(conn != null)
+				conn.close();
 		}
 		return checker;
 	}
@@ -53,7 +56,10 @@ public class ImplOrder implements IOrder {
 	@Override
 	public List<Order> getListOrder() throws SQLException{
 		Connection cons = Connector.getConnection();
-		String sql = "select * from customer INNER JOIN bill ON customer.customer_id = bill.id_customer";
+		String sql = "select bill_info.bill_info_id, bill_info.amount, bill_info.id_product, bill.*, customer.* "
+				+ "from bill_info "
+				+ "JOIN bill ON bill_info.id_bill = bill.bill_id "
+				+ "JOIN customer ON bill.id_customer = customer.customer_id ";
 		List<Order> list = new ArrayList<>();
 		try {
 			PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
@@ -69,6 +75,9 @@ public class ImplOrder implements IOrder {
 				order.setCheckOut(rs.getDate("checkout"));
 				order.setPamentMethod(rs.getInt("method"));
 				order.setStatus(rs.getInt("status"));
+				order.setIdBillInf(rs.getInt("bill_info_id"));
+				order.setIdProduct(rs.getInt("id_product"));
+				order.setAmount(rs.getInt("amount"));
 				list.add(order);
 			}
 			cons.close();
@@ -131,5 +140,44 @@ public class ImplOrder implements IOrder {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public boolean deleteOrder(int idBillInfo, int idBill, int idCustomer, int idProduct, int amountOrder) throws SQLException {
+		
+		boolean checker = false;
+		Connection conn = Connector.getConnection();
+		try {
+			conn.setAutoCommit(false);
+			//Delete bill info
+			ImplBillInfo implBillInfo = new ImplBillInfo();
+			implBillInfo.delete(conn, idBillInfo);
+			//Delete bill
+			ImplBill implBill = new ImplBill();
+			implBill.delete(conn, idBill);
+			//Delete customer
+			ImplCustomer implCustomer = new ImplCustomer();
+			implCustomer.delete(conn, idCustomer);
+			//Update amount for product is deleted
+			ImplProduct implProduct = new ImplProduct();
+			Product product = implProduct.getProductById(idProduct);
+			int amountNew = product.getAmount() + amountOrder;
+			implBillInfo.updateAmount(conn, amountNew, idBillInfo);
+			//Update amount product
+			implProduct.updateAmount(conn, amountNew, idProduct);
+			conn.commit();
+			checker = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}finally {
+			if(conn != null)
+				conn.close();
+		}
+		return checker;
 	}
 }

@@ -12,10 +12,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(filterName="LoginFilter", urlPatterns= {"/mn_product","/mn_category","/mn_account","/update_account",
+@WebFilter(filterName="LoginFilter", urlPatterns= {"/mn_product","/mn_category","/mn_account","/mn_order","/update_account",
 		"/delete_account","/admin","/view_bill","/add_category",
 		"/add_product","/view_statistical","/view_account","/add_product","/change_password",
-		"/update_product","/delete_product","/registe"})
+		"/update_product","/delete_product","/registe","/order_detail","/delete_order","/delete_order"})
 public class LoginFilter implements Filter {
 
     public LoginFilter() {

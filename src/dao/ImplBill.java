@@ -26,11 +26,13 @@ public class ImplBill implements IBill {
 	}
 
 	@Override
-	public int delete(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(Connection conn, int id) throws SQLException {
+		String sql = "DELETE FROM bill WHERE bill_id = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, id);
+		return ps.executeUpdate();
 	}
-
+	
 	@Override
 	public int updateMethod(int method, int id) throws SQLException {
 		// TODO Auto-generated method stub
@@ -42,5 +44,4 @@ public class ImplBill implements IBill {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

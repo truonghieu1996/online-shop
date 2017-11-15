@@ -17,15 +17,20 @@ public class ImplBillInfo implements IBillInfo {
 	}
 
 	@Override
-	public int delete(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(Connection conn, int id) throws SQLException {
+		String sql = "DELETE FROM `bill_info` WHERE bill_info_id = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, id);
+		return ps.executeUpdate();
 	}
 
 	@Override
-	public int updateAmount(double amount, int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateAmount(Connection conn, int amount, int id) throws SQLException {
+		String sql = "UPDATE bill_info SET amount= ? WHERE bill_info_id= ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, id);
+		ps.setInt(2, amount);
+		return ps.executeUpdate();
 	}
 
 }

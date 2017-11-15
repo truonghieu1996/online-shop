@@ -32,7 +32,9 @@ public class ImplProduct implements IProduct {
 	public int Update(int id, int idCategory, String name, double price, String description, String image,
 			int amount) throws SQLException {
 		Connection conn = Connector.getConnection();
-		String sql = "UPDATE product SET product_name = ?, product_price = ?, product_description = ?, product_image = ?, category_id = ?, amount = ? WHERE product_id = ?";
+		String sql = "UPDATE product "
+				+ "SET product_name = ?, product_price = ?, product_description = ?, product_image = ?, category_id = ?, amount = ? "
+				+ "WHERE product_id = ?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, name);
 		ps.setDouble(2, price);
@@ -47,7 +49,9 @@ public class ImplProduct implements IProduct {
 	public int UpdateOutFile(int id, int idCategory, String name, double price, String description,
 			int amount) throws SQLException {
 		Connection conn = Connector.getConnection();
-		String sql = "UPDATE product SET product_name = ?, product_price = ?, product_description = ?, category_id = ?, amount = ? WHERE product_id=?";
+		String sql = "UPDATE product "
+				+ "SET product_name = ?, product_price = ?, product_description = ?, category_id = ?, amount = ? "
+				+ "WHERE product_id=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, name);
 		ps.setDouble(2, price);
