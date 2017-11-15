@@ -54,7 +54,7 @@
 						</c:if>
 						<td class="data" width="75px">
 							<center>
-								<a href="detail_order?id=1"><img align="middle"
+								<a href="order_detail?id=${order.idBill}"><img align="middle"
 									src="resource/img/detail.png" /> </a>&nbsp;&nbsp;&nbsp; <a
 									href="delete_order?id=1"> <img align="middle"
 									src="resource/img/delete.png">

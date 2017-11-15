@@ -9,6 +9,7 @@ import java.util.List;
 
 import models.Connector;
 import models.Order;
+import models.OrderDetail;
 import models.Product;
 
 public class ImplOrder implements IOrder {
@@ -99,5 +100,36 @@ public class ImplOrder implements IOrder {
 			e.printStackTrace();
 		}
 		return rs;
+	}
+
+	@Override
+	public List<OrderDetail> getListOrderDetailByIdBillInf(int id) throws SQLException {
+		Connection cons = Connector.getConnection();
+		String sql = "SELECT b.bill_info_id, c.category_name, p.product_name, b.amount,p.product_price ,bi.total_price "
+				+ "FROM category c "
+				+ "join product p on c.category_id = p.category_id "
+				+ "join bill_info b on b.id_product = p.product_id "
+				+ "join bill bi on bi.bill_id = b.id_bill "
+				+ "WHERE bi.bill_id = ?";
+		List<OrderDetail> list = new ArrayList<>();
+		try {
+			PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				OrderDetail orderDetail = new OrderDetail();
+				orderDetail.setIdBillInf(rs.getInt("bill_info_id"));
+				orderDetail.setNameCategory(rs.getString("category_name"));
+				orderDetail.setNameProduct(rs.getString("product_name"));
+				orderDetail.setAmount(rs.getInt("amount"));
+				orderDetail.setPrice(rs.getDouble("product_price"));
+				orderDetail.setTotalPrice(rs.getDouble("total_price"));
+				list.add(orderDetail);
+			}
+			cons.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
