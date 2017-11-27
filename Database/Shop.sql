@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 22, 2017 at 03:58 PM
+-- Generation Time: Nov 27, 2017 at 03:41 PM
 -- Server version: 5.7.20-0ubuntu0.16.04.1
 -- PHP Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -33,6 +33,13 @@ CREATE TABLE `account` (
   `role` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`username`, `password`, `displayname`, `role`) VALUES
+('admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -49,7 +56,6 @@ CREATE TABLE `bill` (
   `status` int(11) NOT NULL DEFAULT '0' COMMENT 'Payment status'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
 -- --------------------------------------------------------
 
 --
@@ -63,7 +69,6 @@ CREATE TABLE `bill_info` (
   `amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
 -- --------------------------------------------------------
 
 --
@@ -75,6 +80,17 @@ CREATE TABLE `category` (
   `category_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `category_name`) VALUES
+(1, 'Samsung'),
+(2, 'Apple'),
+(4, 'Asus'),
+(7, 'Oppo'),
+(8, 'Sony'),
+(9, 'Huawei');
 
 -- --------------------------------------------------------
 
@@ -89,6 +105,7 @@ CREATE TABLE `customer` (
   `customer_phonenumber` varchar(13) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `product`
