@@ -28,7 +28,9 @@ public class Home extends HttpServlet {
 		ImplCategory implcategory = new ImplCategory();
 		try {
 			List<Category> listCategory = implcategory.getListCategory();
-			request.setAttribute("listCategory", listCategory);
+			if(!listCategory.isEmpty()) {
+				request.setAttribute("listCategory", listCategory);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

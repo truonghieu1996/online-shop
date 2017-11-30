@@ -16,7 +16,7 @@
 		<jsp:include page="menu.jsp"></jsp:include>
 		<div id="rightContent">
 			<h3>Đăng ký</h3>
-			<form action="signin" method="post" onsubmit="return validateForm()">
+			<form action="registe" method="post" onsubmit="return validateForm()">
 				<table width="95%">
 					<tr><td><b style="color:red;">${message}</b></td></tr>
 					<tr>
